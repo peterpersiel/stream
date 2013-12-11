@@ -1,5 +1,10 @@
 {
-    "title" : "",
+    "app" : {
+      "port" : 3000,
+      "title" : "",
+      "description" : "",
+      "author" : ""
+    },
     "gravatar" : {
       "email" : ""
     },

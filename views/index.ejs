@@ -5,12 +5,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title><%= title %></title>
+    <meta name="description" content="<%= app.description %>">
+    <meta name="author" content="<%= app.author %>">
+
+    <title><%= app.title %></title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- for web -->
+    <link rel="shortcut icon" href="<%= app.favicon.web %>">
+
+    <!-- for apple -->
+    <link rel="shortcut icon" href="<%= app.favicon.apple %>">
+    <link rel="apple-touch-icon" href="<%= app.favicon.apple %>">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -24,14 +32,14 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h3 class="text-muted"><%= title %></h3>
+          <h3 class="text-muted"><%= app.title %></h3>
           <hr>
         </div>
       </div>
 
       <div class="row">
         <div class="col-lg-3">
-          <img src="<%= gravatar %>" alt="Gravatar" class="img-circle visible-lg">
+          <img src="<%= gravatar %>" alt="Gravatar" class="img-rounded visible-lg">
         </div>
         <div class="col-lg-9">
           <p class="lead"><%= about.intro %></p>
@@ -44,8 +52,8 @@
           <div class="page-header">
               <h4 id="github"><i class="fa fa-github-alt"></i> GitHub 
                 <small>
-                  <a href="https://github.com/<%= github_username %>/" target="_blank">
-                    <%= github_username %>
+                  <a href="https://github.com/<%= github.username %>/" target="_blank">
+                    <%= github.username %>
                   </a>
                 </small>
               </h4>
@@ -76,8 +84,8 @@
           <div class="page-header">
               <h4 id="twitter"><i class="fa fa-twitter"></i> Twitter 
                 <small>
-                  <a href="https://twitter.com/<%= twitter_username %>/" target="_blank">
-                    @<%= twitter_username %>
+                  <a href="https://twitter.com/<%= twitter.username %>/" target="_blank">
+                    @<%= twitter.username %>
                   </a>
                 </small>
               </h4>

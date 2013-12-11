@@ -126,4 +126,8 @@ module.exports = function (grunt) {
     'less',
     'cssmin:css',
   ]);
+
+  grunt.registerTask('default', [
+    'production',
+  ]);
 };

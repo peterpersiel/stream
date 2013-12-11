@@ -67,20 +67,20 @@ exports.contact = function(req, callback) {
     
 };
 
-exports.getGravatar = function(nconf) {
+exports.getGravatar = function(config) {
     return gravatar.url(
-        nconf.get('gravatar:email'),
+        config.email,
         {s: 150, r: 'x', d: 'retro'},
         true
     );
 };
 
-exports.getRepos = function(callback, nconf) {
+exports.getRepos = function(callback, config) {
     if (cache.get('repos') === null) {
         console.log('getRepos');
 
          // get users repos
-        github3.getUserRepos(nconf.get('github:username'), function(error, repos) {
+        github3.getUserRepos(config.username, function(error, repos) {
             cache.put('repos', repos, 360000);
             callback(repos);
         });
@@ -89,17 +89,17 @@ exports.getRepos = function(callback, nconf) {
     }
 };
 
-exports.getTweets = function (callback, nconf) {
+exports.getTweets = function (callback, config) {
     if (cache.get('tweets') === null) {
 
         console.log('getTweets');
 
-        var T = new Twit(nconf.get('twitter'));
+        var T = new Twit(config);
 
         T.get(
             'statuses/user_timeline',
             {
-                screen_name: nconf.get('twitter:username'),
+                screen_name: config.username,
                 count: 10,
                 include_rts: false
             },
@@ -116,20 +116,18 @@ exports.getTweets = function (callback, nconf) {
 
 exports.index = function(req, res){
 
-    res.locals.gravatar         = exports.getGravatar(req.nconf);
-    res.locals.twitter_username = req.nconf.get('twitter:username');
-    res.locals.github_username  = req.nconf.get('github:username');
+    res.locals.gravatar = exports.getGravatar(req.nconf.get('gravatar'));
 
     var series = [
         function(callback) {
             exports.getTweets(function(tweets) {
                 callback(null, tweets);
-            }, req.nconf);
+            }, req.nconf.get('twitter'));
         },
         function(callback) {
             exports.getRepos(function(repos) {
                 callback(null, repos);
-            }, req.nconf);
+            }, req.nconf.get('github'));
         }
     ];
 

@@ -11,7 +11,8 @@ var express = require('express')
   , nconf   = require('nconf')
   , jQuery  = require('jquery')
   , fs      = require('fs')
-  , expressValidator = require('express-validator');
+  , expressValidator = require('express-validator')
+  , gravatar         = require('gravatar');
 
 jQuery.extend(ejs.filters, require('./filters'));
 
@@ -29,7 +30,6 @@ app.configure(function(){
     req.nconf = nconf;
     return next();
   });
-  app.use(express.favicon());
   app.use(express.compress());
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
@@ -55,6 +55,19 @@ app.configure('production', function(){
 });
 
 app.locals(nconf.get());
+
+app.locals.app.favicon = {
+  apple: gravatar.url(
+    nconf.get('gravatar:email'),
+    {s: 256, r: 'x', d: 'retro'},
+    true
+  ),
+  web: gravatar.url(
+    nconf.get('gravatar:email'),
+    {s: 16, r: 'x', d: 'retro'},
+    true
+  )
+};
 
 app.get('/', routes.index);
 app.post('/', routes.index);
