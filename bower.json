@@ -1,0 +1,16 @@
+{
+  "name": "stream",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/bower"
+  ],
+  "dependencies": {
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "bootswatch": "latest",
+    "font-awesome": "latest",
+    "pace": "latest"
+  }
+}

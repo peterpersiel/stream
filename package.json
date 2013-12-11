@@ -1,0 +1,36 @@
+{
+  "name": "stream",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "latest",
+    "ejs": "latest",
+    "gravatar": "latest",
+    "github3": "latest",
+    "memory-cache": "latest",
+    "async": "latest",
+    "twit": "latest",
+    "bower": "latest",
+    "jquery": "latest",
+    "nconf": "latest",
+    "twitter-text": "latest",
+    "express-validator": "latest",
+    "sendgrid": "0.4.4"
+  },
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-develop": "latest",
+    "grunt-contrib-watch": "latest",
+    "request": "latest",
+    "time-grunt": "latest",
+    "load-grunt-tasks": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-bower-task": "latest"
+  }
+}
