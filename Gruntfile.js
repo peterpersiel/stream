@@ -124,6 +124,6 @@ module.exports = function (grunt) {
     'concat:js',
     'uglify:js',
     'less',
-    'cssmin:css'
+    'cssmin:css',
   ]);
 };

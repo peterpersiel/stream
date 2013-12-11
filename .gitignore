@@ -16,4 +16,8 @@ node_modules
 
 public/bower
 
+public/css/style.css
+
+public/js/app.js
+
 config.json
