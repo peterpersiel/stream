@@ -1,0 +1,36 @@
+{
+    "title" : "",
+    "gravatar" : {
+      "email" : ""
+    },
+    "github" : {
+      "username" : ""
+    },
+    "facebook" : {
+      "username" : ""
+    },
+    "twitter" : {
+      "username" : "",
+      "access_token" : "",
+      "consumer_key" : "",
+      "consumer_secret" : "",
+      "access_token_secret" : ""
+    },
+    "sendgrid": {
+      "api_user" : "",
+      "api_key" : ""
+    },
+    "xing": {
+      "username": ""
+    },
+    "about": {
+        "intro": "",
+        "text": ""
+    },
+    "address" : {
+        "name": "",
+        "street": "",
+        "zip": "",
+        "city": ""
+    }
+}

@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title><%= title %></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 class="text-muted"><%= title %></h3>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3">
+          <img src="<%= gravatar %>" alt="Gravatar" class="img-circle visible-lg">
+        </div>
+        <div class="col-lg-9">
+          <p class="lead"><%= about.intro %></p>
+          <p><%= about.text %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-header">
+              <h4 id="github"><i class="fa fa-github-alt"></i> GitHub 
+                <small>
+                  <a href="https://github.com/<%= github_username %>/" target="_blank">
+                    <%= github_username %>
+                  </a>
+                </small>
+              </h4>
+          </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="list-group">
+            <% repos.forEach(function(repo, key) { %>
+                <a target="_blank" href="<%= repo.html_url %>" class="list-group-item">
+                  <h5 class="list-group-item-heading"><%= repo.name %></h5>
+                  <p class="list-group-item-text">
+                    <%= repo.description %>
+                  </p>
+                </a>
+                <% if (((key + 1) % Math.ceil(repos.length / 3)) == 0) { %>
+                  </div>
+                </div>
+                  <div class="col-lg-4">
+                  <div class="list-group">
+                <% } %>
+            <% }) %>
+            </div>
+         </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-header">
+              <h4 id="twitter"><i class="fa fa-twitter"></i> Twitter 
+                <small>
+                  <a href="https://twitter.com/<%= twitter_username %>/" target="_blank">
+                    @<%= twitter_username %>
+                  </a>
+                </small>
+              </h4>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <% tweets.forEach(function(tweet, key) { %>
+          <blockquote>
+            <p><%-: tweet.text | twitter_text %></p>
+            <small><%=: tweet.created_at | twitter_date %></small>
+          </blockquote>
+          <% }) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-header">
+              <h4 id="contact"><i class="fa fa-envelope-o"></i> Contact</h4>
+          </div>
+        </div>
+        <div class="col-lg-12">
+
+          <% if (typeof(contact) != 'undefined') { %>
+            <% if (contact.errors.length > 0) { %>
+              <% contact.errors.forEach(function(error) { %>
+              <div class="alert alert-danger"><%= error %></div>
+              <% }) %>
+            <% } else { %>
+            <div class="alert alert-success">Your contact request has successfully been sent.</div>
+            <% } %>
+          <% } %>
+
+          <form class="form-horizontal" role="form" action="#contact" method="post">
+            <div class="form-group">
+              <label for="contact-name" class="col-sm-2 control-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" name="name" class="form-control" id="contact-name" placeholder="John Doe" required="required" <% if (typeof(contact) != 'undefined') { %>value="<%= contact.values.name %>"<% }%>>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subject-email" class="col-sm-2 control-label">Subject</label>
+              <div class="col-sm-10">
+                <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Your Subject" required="required" <% if (typeof(contact) != 'undefined') { %>value="<%= contact.values.subject %>"<% }%>>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contact-email" class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" name="email" class="form-control" id="contact-email" placeholder="you@example.com" required="required" <% if (typeof(contact) != 'undefined') { %>value="<%= contact.values.email %>"<% }%>>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contact-message" class="col-sm-2 control-label">Message</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" name="message" id="contact-message" placeholder="Hello there, my name is..." rows="10" required="required"><% if (typeof(contact) != 'undefined') { %><%= contact.values.message %><% } %></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <hr>
+
+      <div class="row">
+        <div class="col-xs-3">
+          <address>
+            <strong><%= address.name %></strong><br>
+            <%= address.street %><br>
+            <%= address.zip %>&nbsp;<%= address.city %>
+          <address>
+        </div>
+        <div class="col-xs-9 hidden-xs">
+          <div class="btn-group btn-group-justified">
+            <a href="https://twitter.com/<%= twitter.username %>" target="_blank" class="btn btn-default">
+              <i class="fa fa-twitter"></i> Twitter
+            </a>
+            <a href="https://github.com/<%= github.username %>" target="_blank" class="btn btn-default">
+              <i class="fa fa-github"></i> GitHub
+            </a>
+            <a href="https://facebook.com/<%= facebook.username %>" target="_blank" class="btn btn-default">
+              <i class="fa fa-facebook"></i> Facebook
+            </a>
+            <a href="http://www.xing.com/profile/<%= xing.username %>" rel="me" class="btn btn-default">
+              <i class="fa fa-xing"></i> Xing
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <p>Made with &hearts; and <a href="https://github.com/peterpersiel/stream/"><em>stream</em></p>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="js/app.js"></script>
+  </body>
+</html>
