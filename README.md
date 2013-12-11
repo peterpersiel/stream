@@ -16,6 +16,7 @@ $ vi config.json
 ```sh
 $ npm install grunt-cli -g
 $ npm install forever -g
+$ npm install
 $ grunt production
 $ forever start app.js
 ```
