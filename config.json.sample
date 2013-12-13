@@ -5,6 +5,9 @@
       "description" : "",
       "author" : ""
     },
+    "analytics": {
+      "tracking_id" : ""
+    },
     "gravatar" : {
       "email" : ""
     },
