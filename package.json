@@ -32,5 +32,5 @@
     "grunt-contrib-less": "latest",
     "grunt-contrib-cssmin": "latest",
     "grunt-bower-task": "latest"
-    }
+  }
 }

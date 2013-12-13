@@ -69,6 +69,8 @@ app.locals.app.favicon = {
   )
 };
 
+app.locals.app.enviroment = process.env.NODE_ENV;
+
 app.get('/', routes.index);
 app.post('/', routes.index);
 
