@@ -1,17 +1,19 @@
 var gravatar = require('gravatar')
-,   github3 = require('github3')
-,   cache   = require('memory-cache')
-,   Twit    = require('twit')
-,   async = require('async');
+,   github3  = require('github3')
+,   cache    = require('memory-cache')
+,   Twit     = require('twit')
+,   asyn     = require('async');
 
 exports.contact = function(req, callback) {
+    var sendgrid;
+    
     if (process.env.NODE_ENV == 'production') {
-        var sendgrid  = require('sendgrid')(
+        sendgrid = require('sendgrid')(
             req.nconf.get('sendgrid:api_user'),
             req.nconf.get('sendgrid:api_key')
         );
     } else {
-        var sendgrid = {
+        sendgrid = {
             send: function(payload, cb) {
                 console.log('Sending mail');
                 console.log(payload);
@@ -76,7 +78,9 @@ exports.getGravatar = function(config) {
 };
 
 exports.getRepos = function(callback, config) {
-    if (cache.get('repos') === null) {
+    if (!('username' in config) || config.username.length < 1) {
+       callback([]);
+    } else if (cache.get('repos') === null) {
         console.log('getRepos');
 
          // get users repos
@@ -90,7 +94,9 @@ exports.getRepos = function(callback, config) {
 };
 
 exports.getTweets = function (callback, config) {
-    if (cache.get('tweets') === null) {
+    if (!('consumer_key' in config) || config.consumer_key.length < 1) {
+       callback([]);
+    } else if (cache.get('tweets') === null) {
 
         console.log('getTweets');
 
