@@ -1,6 +1,6 @@
 # stream
 
-[![Build Status](https://travis-ci.org/peterpersiel/stream.png?branch=master)](https://travis-ci.org/peterpersiel/stream)
+[![Build Status](https://magnum.travis-ci.com/peterpersiel/stream.svg?token=qY3srZyR9nUxd3FHS2Ht)](https://magnum.travis-ci.com/peterpersiel/stream)
 
 A node.js Life stream
 
